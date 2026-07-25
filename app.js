@@ -1,20 +1,31 @@
-let heroes = [
-    ["ironman","spiderman","thor"],
-    ["superman","wonder woman", "flash"]
-];
+let todo = [];
+let req = prompt("please enter your request");
 
-for(let i=0; i< heroes.length; i++) {
-    console.log(i, heroes[i], heroes[i].length);
-
-    for(let j=0; j<heroes[i].length; j++){
-        console.log(`j=${j}, ${heroes[i][j]}`);
+while(true) {
+    if(req == "quit") {
+        console.log("quitting app");
+        break;
     }
-}
-let students =[["sakshi",95],["sonu",96],["shardha",100]];
 
-for(let i=0; i<students.length; i++){
-    console.log(`info of students #${i+1}`);
-    for(let j=0; j<students[i].length; j++){
-        console.log(students[i][j]);
+    if(req == "list"){
+        console.log("--------");
+        for( let i=0; i<todo.length; i++ ){
+        console.log(i,todo[i]);
+        }
+        console.log("--------");
+    } 
+    else if (req == "add"){
+        let task = prompt("please enter the task you want to add");
+        todo.push(task);
+        console.log(" task added");
+    } else if(req == "delete") {
+        let idx =prompt("please enter the task index");
+        todo.splice(idx, 1);
+         console.log("task deleted");
+    } else{
+        console.log("wrong request");
     }
+
+    req = prompt("please enter your request");
 }
+ 
