@@ -1,31 +1,25 @@
-let todo = [];
-let req = prompt("please enter your request");
+const max = prompt("enter the max number");
+const random = Math.floor(Math.random()*max)+1;
+console.log(random);
+
+let guess =prompt("guess the number");
 
 while(true) {
-    if(req == "quit") {
-        console.log("quitting app");
+    if(guess == "quit") {
+        console.log("user quit");
         break;
     }
-
-    if(req == "list"){
-        console.log("--------");
-        for( let i=0; i<todo.length; i++ ){
-        console.log(i,todo[i]);
-        }
-        console.log("--------");
-    } 
-    else if (req == "add"){
-        let task = prompt("please enter the task you want to add");
-        todo.push(task);
-        console.log(" task added");
-    } else if(req == "delete") {
-        let idx =prompt("please enter the task index");
-        todo.splice(idx, 1);
-         console.log("task deleted");
-    } else{
-        console.log("wrong request");
+    if(guess == random) {
+        console.log("you are right! congrats!!");
+        break;
+    }
+    else if(guess < random){
+        guess =prompt("Hint:your guess was too small.please try again");
+    }else{
+        guess =prompt("Hint:your guess was too large.please try again");
     }
 
-    req = prompt("please enter your request");
+    // else {
+    //     guess = prompt("your guess was wrong.please try again!");
+    // }
 }
- 
