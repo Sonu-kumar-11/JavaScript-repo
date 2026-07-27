@@ -1,25 +1,13 @@
-const max = prompt("enter the max number");
-const random = Math.floor(Math.random()*max)+1;
-console.log(random);
+let greet = "hello";// global scope
 
-let guess =prompt("guess the number");
+ function changegreet() {
+    let greet = "namaste"; // function scope
+    console.log(greet);
 
-while(true) {
-    if(guess == "quit") {
-        console.log("user quit");
-        break;
+    function innerGreet() {
+        console.log(greet); //lexical scope
     }
-    if(guess == random) {
-        console.log("you are right! congrats!!");
-        break;
-    }
-    else if(guess < random){
-        guess =prompt("Hint:your guess was too small.please try again");
-    }else{
-        guess =prompt("Hint:your guess was too large.please try again");
-    }
-
-    // else {
-    //     guess = prompt("your guess was wrong.please try again!");
-    // }
-}
+    innerGreet();
+ }
+console.log(greet);
+changegreet();
