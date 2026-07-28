@@ -1,13 +1,10 @@
-let greet = "hello";// global scope
+let arr =[1,4,2,5,6,7,2,9,2];
 
- function changegreet() {
-    let greet = "namaste"; // function scope
-    console.log(greet);
-
-    function innerGreet() {
-        console.log(greet); //lexical scope
-    }
-    innerGreet();
+let max = arr.reduce((max, el) => {
+ if(max < el) {
+    return el;
+ } else {
+    return max;
  }
-console.log(greet);
-changegreet();
+});
+console.log(max);
