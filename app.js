@@ -1,86 +1,78 @@
-h1 = document.querySelector("h1");
 
-function changeColor(color, delay, ){
-    return new Promise((resolve, reject) => {
-        setTimeout(() => {
-            let num = Math.floor(Math.random()*5)+1;
-            if(num > 3){
-                reject("promise rejected");
-            }
-        h1.style.color = color;
-        console.log(`color changed to ${color}!`);
-        resolve("color changed!");
-    }, delay);
+
+//  fetch(url)
+//  .then((res) => {
+//  return res.json();
+//     })
+
+//     .then((data) => {
+//         console.log("data1=",data.fact);
+//         return fetch(url);
+//     })
+//     .then((res) => {
+//         return res.json();
+//     })
+//     .then((data2) => {
+//         console.log("data2 = ",data2.fact);
+//     })
+
+//  .catch((err) => {
+//     console.log("ERROR - ", err);
+//  });
+
+// async function getsFacts() {
+
+//     try{
+//      let res = await fetch(url);  
+// let data = await res.json();
+// console.log(data.fact);     
+//     } catch(e){
+//         console.log("error -",e);
+//     }
+//   console.log("bye");
+// }
+let btn = document.querySelector("button");
+let url2 ="https://dog.ceo/api/breeds/image/random"
+
+btn.addEventListener("click", async() => {
+let link = await getImage();
+let img = document.querySelector("#result");
+img.setAttribute("src",link);
+ console.log(link);
 });
-}
 
-async function demo() {
+
+
+async function getImage() {
+
     try{
-        await changeColor("red",1000);
-     await changeColor("orange",1000);
-     await changeColor("green",1000);
-      await changeColor("blue",1000);
-      changeColor("pink", 1000);
-    } catch (err) {
-        console.log("error caught");
-        console.log(err);
+     let res = await axios.get(url2);  
+      return res.data.message;     
+    } catch (e) {
+        console.log("error -",e);
+        return "no image found"
     }
-   
-
-let a = 5;
-console.log(a);
-console.log("new number = ",a + 3);
-
 }
-// changeColor("red",1000)
-// .then(() =>{
-//     console.log("orange color was completed");
-//     return changeColor("green",1000);
-// })
-// .then(() =>{
-//     console.log("red color was completed");
-//     return changeColor("green",1000);
-// })
-// .then(() =>{
-//     console.log("green color was completed");
-//     return changeColor("blue",1000);
-// })
-// .then(() =>{
-//     console.log("blue color was completed");
-//     return changeColor("orange",1000);
+
+
+// btn.addEventListener("click", async() => {
+//    let fact = await getFacts();
+//     // console.log(fact);
+//     let p= document.querySelector("#result");
+//     p.innerText = fact;
 // });
 
-// async function greet() {
-//     //throw "some error";
-//     return "hello!";
+// let url = "https://catfact.ninja/fact";
+
+
+// async function getFacts() {
+
+//     try{
+//      let res = await axios.get(url);  
+//       return res.data.fact;     
+//     } catch (e) {
+//         console.log("error -",e);
+//         return "no fact found"
+//     }
 // }
-
-// greet()
-// .then((result) => {
-//     console.log ("promise was resolved");
-//     console.log ("result was : ", result);
-// })
-
-// .catch((err)=>{
-//     console.log("promise was rejected with err:" ,err);
-// });
-
-
-// function getNum(){
-//     return new Promise ((resolve , reject) =>{
-//         setTimeout(() => {
-//         let num = Math.floor(Math.random()*10)+1;
-//         console.log(num);
-//         resolve();
-//     } ,1000);
-//     });
-// }
-
-// async function demo() {
-//     await getNum();
-//      await getNum();
-//       getNum();
-// }
-
-
 
