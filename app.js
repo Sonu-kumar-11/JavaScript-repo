@@ -1,78 +1,32 @@
-
-
-//  fetch(url)
-//  .then((res) => {
-//  return res.json();
-//     })
-
-//     .then((data) => {
-//         console.log("data1=",data.fact);
-//         return fetch(url);
-//     })
-//     .then((res) => {
-//         return res.json();
-//     })
-//     .then((data2) => {
-//         console.log("data2 = ",data2.fact);
-//     })
-
-//  .catch((err) => {
-//     console.log("ERROR - ", err);
-//  });
-
-// async function getsFacts() {
-
-//     try{
-//      let res = await fetch(url);  
-// let data = await res.json();
-// console.log(data.fact);     
-//     } catch(e){
-//         console.log("error -",e);
-//     }
-//   console.log("bye");
-// }
+let url ="http://universities.hipolabs.com/search?name= india";
 let btn = document.querySelector("button");
-let url2 ="https://dog.ceo/api/breeds/image/random"
 
-btn.addEventListener("click", async() => {
-let link = await getImage();
-let img = document.querySelector("#result");
-img.setAttribute("src",link);
- console.log(link);
+btn.addEventListener("click",async()=>{
+    let country = document.querySelector("input").value;
+    console.log(country);
+   let colleges = await getColleges(country);
+   console.log(colleges);
+   show(colleges)
 });
 
-
-
-async function getImage() {
-
-    try{
-     let res = await axios.get(url2);  
-      return res.data.message;     
-    } catch (e) {
-        console.log("error -",e);
-        return "no image found"
-    }
+function show(colleges){
+    let list =document.querySelector("#list");
+    list.innerText ="";
+for(coll of colleges){
+    console.log(coll.name);
+    let li =document.createElement("li");
+    li.innerText =coll.name;
+    list.appendChild(li);
+}
 }
 
-
-// btn.addEventListener("click", async() => {
-//    let fact = await getFacts();
-//     // console.log(fact);
-//     let p= document.querySelector("#result");
-//     p.innerText = fact;
-// });
-
-// let url = "https://catfact.ninja/fact";
-
-
-// async function getFacts() {
-
-//     try{
-//      let res = await axios.get(url);  
-//       return res.data.fact;     
-//     } catch (e) {
-//         console.log("error -",e);
-//         return "no fact found"
-//     }
-// }
-
+async function getColleges(country){
+    try{
+        let res =await axios.get(url+country);
+        return res.data;
+    }
+    catch(error){
+        console.log(error);
+        return[];
+    }
+}
